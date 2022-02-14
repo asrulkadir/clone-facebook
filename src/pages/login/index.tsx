@@ -157,6 +157,8 @@ const LoginPage = () => {
         secure: true,
         sameSite: 'strict',
       });
+    } else {
+      window.confirm('Username or password is incorrect');
     }
   };
 
