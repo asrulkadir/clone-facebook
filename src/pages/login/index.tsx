@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Cookies from 'js-cookie';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { FacebookLogo } from '../../assets/image';
+import { useNavigate } from 'react-router';
 
 const LoginPageStyled = styled.div`
   display: flex;
@@ -131,6 +133,8 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showEye, setShowEye] = useState(false);
   const [inputPassword, setInputPassword] = useState('');
+  const [inputUser, setInputUser] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (inputPassword) {
@@ -144,12 +148,29 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleLogin = (e: any) => {
+    e.preventDefault();
+    if (inputUser === 'asrulkadir' && inputPassword === 'password') {
+      navigate('/');
+      Cookies.set('token', 'asrulkadir', {
+        expires: 1,
+        secure: true,
+        sameSite: 'strict',
+      });
+    }
+  };
+
   return (
     <LoginPageStyled>
       <img src={FacebookLogo} alt="facebook" />
       <FormLogin>
         <TitleForm>Log in to Facebook</TitleForm>
-        <Input type="text" placeholder="Email address or phone number" />
+        <Input
+          type="text"
+          placeholder="Email address or phone number"
+          value={inputUser}
+          onChange={(e) => setInputUser(e.target.value)}
+        />
         <InputPassword>
           <Input
             type={showPassword ? 'text' : 'password'}
@@ -170,6 +191,7 @@ const LoginPage = () => {
           width="100%"
           backgroundColor="rgb(24, 119, 242)"
           type="submit"
+          onClick={handleLogin}
         >
           Log In
         </Button>
