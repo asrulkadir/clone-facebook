@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Cookies from 'js-cookie';
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
-import { FacebookLogo } from '../../assets/image';
-import { useNavigate } from 'react-router';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Cookies from "js-cookie";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+import { FacebookLogo } from "../../assets/image";
+import { useNavigate } from "react-router";
 
 const LoginPageStyled = styled.div`
   display: flex;
@@ -132,8 +132,8 @@ const Line = styled.div`
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showEye, setShowEye] = useState(false);
-  const [inputPassword, setInputPassword] = useState('');
-  const [inputUser, setInputUser] = useState('');
+  const [inputPassword, setInputPassword] = useState("");
+  const [inputUser, setInputUser] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -150,15 +150,15 @@ const LoginPage = () => {
 
   const handleLogin = (e: any) => {
     e.preventDefault();
-    if (inputUser === 'asrulkadir' && inputPassword === 'password') {
-      navigate('/');
-      Cookies.set('token', 'asrulkadir', {
+    if (inputUser === "asrulkadir" && inputPassword === "password") {
+      navigate("/");
+      Cookies.set("token", "asrulkadir", {
         expires: 1,
         secure: true,
-        sameSite: 'strict',
+        sameSite: "strict",
       });
     } else {
-      window.confirm('Username or password is incorrect');
+      window.confirm("Username or password is incorrect");
     }
   };
 
@@ -169,14 +169,14 @@ const LoginPage = () => {
         <TitleForm>Log in to Facebook</TitleForm>
         <Input
           type="text"
-          placeholder="Email address or phone number"
+          placeholder="type asrulkadir"
           value={inputUser}
           onChange={(e) => setInputUser(e.target.value)}
         />
         <InputPassword>
           <Input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
+            type={showPassword ? "text" : "password"}
+            placeholder="type password"
             value={inputPassword}
             onChange={(e) => setInputPassword(e.target.value)}
           />
